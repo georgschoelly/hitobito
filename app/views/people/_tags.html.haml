@@ -11,7 +11,7 @@
     = render 'person/tags/list', tags: @tags
 
     - if can?(:create, entry.tags.new)
-      %span.label.chip.chip-add.person-tag-add
+      %span.chip.chip-add.person-tag-add
         = t('.add_tag')
         = icon(:plus)
 
