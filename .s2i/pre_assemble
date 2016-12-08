@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# this script places the core and wagon files in the right folders and creates the Wagonfile.
+# after this, we are able to use our rails images default assemble script to do the execute default
+# tasks like assets precompilation
+
+# move core
+mv /tmp/src/hitobito/* /tmp/src
+
+# add wagon sources
+mkdir /tmp/src/vendor/wagons
+for dir in /tmp/src/hitobito_*; do
+  if [[ ( -d $dir ) ]]; then
+    mv $dir /tmp/src/vendor/wagons/
+  fi
+done
+
+# place Wagonfile
+mv -f /tmp/src/config/rpm/Wagonfile /tmp/src
+
+# move hidden core dirs
+rm -f /tmp/src/.s2i/pre_assemble
+cp -rf /tmp/src/hitobito/.s2i /tmp/src/ # cannot be moved since it is in use during this script's execution
+mv /tmp/src/hitobito/.tx /tmp/src/
+
+# finally remove core source directory
+rm -rf /tmp/src/hitobito
