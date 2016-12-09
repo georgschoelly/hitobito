@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 # this script is executed after our rails images default assemble script. 
 
 bundle exec rake wagon:migrate
