@@ -45,8 +45,9 @@ rm -rf hitobito
 #     You have deleted from the Gemfile:
 #     * source: source at ../hitobito_insieme
 #     * hitobito_insieme
-bundle install --no-deployment
+# This inludes fixes from https://github.com/bundler/bundler/issues/2854#issuecomment-38991901
+bundle install --no-deployment --path vendor/bundle
 # Speed up the second `bundle install` run
-bundle package
+bundle package --all
 
 popd
