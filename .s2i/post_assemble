@@ -6,8 +6,8 @@ set -ex
 
 pushd /opt/app-root/src
 
-bundle exec rake wagon:migrate
+# TODO pull transifex translations
 
 popd
 
-# TODO pull transifex translations
+
